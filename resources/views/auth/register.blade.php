@@ -1,59 +1,65 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('auth.master')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="wrap">
+                <div class="img" style="background-image: url({{ asset('auth/images/bg-1.jpg') }});">
+                </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger m-1">
+                        <ul class="mx-2 p-0"  >
+                            @foreach ($errors->all() as $error)
+                                <li style="text-decoration: none; list-style-type:none;"><i class="fa fa-exclamation-circle"></i> {{ $error }}</li>
+                            @endforeach
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                        </ul>
+                    </div>
+                @endif
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="d-flex">
+                        <div class="w-100">
+                            <h3 class="mb-4">Sign Up</h3>
+                        </div>
+                        <div class="w-100">
+                            <p class="social-media d-flex justify-content-end">
+                                <a href="#" class="social-icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-facebook"></span>
+                                </a>
+                                <a href="#" class="social-icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-twitter"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <form action="{{ route('register') }}" class="signin-form" method="POST">
+                        @csrf
+                        <div class="form-group mt-3">
+                            <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control">
+                            <label class="form-control-placeholder" for="name">Full Name <span>*</span></label>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" id="email" name="email" value="{{ old('email') }}"  class="form-control">
+                            <label class="form-control-placeholder" for="email">Email <span>*</span></label>
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" type="password" value="{{ old('password') }}" class="form-control" name="password">
+                            <label class="form-control-placeholder" for="password">Password <span>*</span></label>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
+                            <label class="form-control-placeholder" for="password_confirmation">Confirm Password <span>*</span></label>
+                            <span toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                        </div>
+                    </form>
+                    <p class="text-center">Already registered? <a  href="{{ route('login') }}"> Login</a></p>
+                </div>
             </div>
+        </div>
+    </div>
+@endsection
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
