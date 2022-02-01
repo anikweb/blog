@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\{
+    FrontendController,
+};
 
 
 /*
@@ -36,10 +39,8 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 // Email Verification End
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Frontend
+Route::get('/',[FrontendController::class,'index'])->name('frontend');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
