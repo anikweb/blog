@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>@if(Route::is('login')) Login  @elseif(Route::is('register')) Sign Up @elseif(Route::is('password.request')) Forget Password @elseif(Route::is('verification.notice')) Verification @endif  || Anik Blog</title>
+  	<title>@if(Route::is('login')) Login  @elseif(Route::is('register')) Sign Up @elseif(Route::is('password.request')) Forget Password @elseif(Route::is('verification.notice')) Verification Email @endif  || Anik Blog</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
