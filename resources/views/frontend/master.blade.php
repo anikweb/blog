@@ -34,9 +34,18 @@
                     {{-- Right Menu  --}}
                     <ul class="navbar-nav ml-auto d-flex align-items-center">
                         @auth
-                            <li class="nav-item highlight">
-                                <a class="btn btn-outline-primary" href="{{ route('dashboard') }}">Dashboard</a>
-                            </li>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i> My Account
+                                </button>
+                                <div class="dropdown-menu" style="border:1px solid green; box-shadow:none">
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="dropdown-item">Sign out</button>
+                                    </form>
+                                </div>
+                            </div>
                         @else
                             <li class="nav-item highlight pr-1">
                                 <a class="btn btn-outline-primary" href="{{ route('login') }}"><i class="fa fa-sign-in-alt"></i> Sign in</a>

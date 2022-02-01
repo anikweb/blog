@@ -3,7 +3,7 @@
 <!--------------------------------------
 HEADER
 --------------------------------------->
-<div class="container">
+<div class="container d-none d-md-block">
 	<div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
 		<div class="pl-4 pr-0 h-100 tofront">
 			<div class="row justify-content-between">

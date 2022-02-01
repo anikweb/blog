@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use GuzzleHttp\Middleware;
 use App\Http\Controllers\{
+    DashboardController,
     FrontendController,
 };
-
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,17 @@ use App\Http\Controllers\{
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Frontend
+Route::get('/',[FrontendController::class,'index'])->name('frontend');
+
+// Middleware Group
+Route::middleware(['verified','auth'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+});
+
 
 // Email Verification Start
 Route::get('/email/verify', function () {
@@ -38,12 +50,5 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 // Email Verification End
-
-// Frontend
-Route::get('/',[FrontendController::class,'index'])->name('frontend');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
