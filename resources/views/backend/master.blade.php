@@ -20,7 +20,15 @@
   <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/daterangepicker/daterangepicker.css') }}">
-
+    {{-- select2  --}}
+    <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .bg-success,.btn-outline-success,.btn-success{
+            background-color: #03a87c !important;
+            color:white;
+        }
+    </style>
+    @yield('internal_style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -191,36 +199,6 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        {{-- Dropdown Nav  --}}
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v1</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v3</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link @if(Route::is('dashboard')) active @endif">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -228,6 +206,23 @@
                                 Dashboard
                             </p>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-users nav-icon"></i>
+                                <p>
+                                    Roles
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('backend.create.role') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Role</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                     </ul>
@@ -240,7 +235,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-
+        @yield('content')
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -285,5 +280,8 @@
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="dist/js/demo.js"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    {{-- select2  --}}
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @yield('footer_js')
 </body>
 </html>

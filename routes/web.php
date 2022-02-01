@@ -7,6 +7,7 @@ use GuzzleHttp\Middleware;
 use App\Http\Controllers\{
     DashboardController,
     FrontendController,
+    RoleController,
 };
 
 /*
@@ -27,6 +28,7 @@ Route::get('/',[FrontendController::class,'index'])->name('frontend');
 Route::middleware(['verified','auth'])->group(function () {
     // Dashboard
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard/create-role',[RoleController::class,'assignRole'])->name('backend.create.role');
 
 });
 
