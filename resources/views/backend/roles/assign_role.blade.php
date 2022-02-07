@@ -4,12 +4,12 @@
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-            <h1>Create Role</h1>
+            <h1>Assign Role</h1>
             </div>
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Create Role</li>
+                <li class="breadcrumb-item active">Assign Role</li>
             </ol>
             </div>
         </div>
@@ -30,7 +30,7 @@
                                     <div class="col-md-6  mx-auto pb-4 text-md-left text-center ">
                                         <label for="user" style="text-align: left !important !important">Select user and role to assign between <span>*</span></label>
                                         <div class="input-group">
-                                            <select name="" id="user" class="form-control users-input" style="text-align: left">
+                                            <select name="user" id="user" class="form-control users-input" style="text-align: left">
                                                 @foreach ($users as $user)
                                                     <option value="">{{ $user->name  }} ({{ $user->email  }})</option>
                                                 @endforeach

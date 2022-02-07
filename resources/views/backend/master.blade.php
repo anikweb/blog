@@ -219,7 +219,11 @@
                                 <li class="nav-item">
                                     <a href="{{ route('backend.create.role') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Create Role</p>
+                                        <p>Assign Role</p>
+                                    </a>
+                                    <a href="{{ route('backend.roles') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Roles</p>
                                     </a>
                                 </li>
                             </ul>
