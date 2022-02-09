@@ -25,9 +25,16 @@
                         </div>
                         <div class="card-body">
                             <h3>{{ $role->name }}</h3>
-                            <form action="">
+                            <form action="{{ route('backend.role.give-permission') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="role" value="{{ $role->name }}">
+
                                 @foreach ($permissions as $permission)
-                                    <input type="checkbox" name="{{ $permission->name }}" id="{{ $permission->name }}">
+                                    <input  @foreach ($role->permissions as $item)
+                                    @if ($item->name == $permission->name)
+                                    checked
+                                    @endif
+                                @endforeach type="checkbox" name="permission[]" value="{{ $permission->name }}" id="{{ $permission->name }}">
                                     <label style="font-weight:500" for="{{ $permission->name }}">{{ $permission->name }}</label>
                                 @endforeach
                                 <div class="form-group">

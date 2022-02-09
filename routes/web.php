@@ -28,9 +28,11 @@ Route::get('/',[FrontendController::class,'index'])->name('frontend');
 Route::middleware(['verified','auth'])->group(function () {
     // Dashboard
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    // Role Management
     Route::get('/dashboard/assign-role',[RoleController::class,'assignRole'])->name('backend.create.role');
     Route::get('/dashboard/roles',[RoleController::class,'roles'])->name('backend.roles');
     Route::get('/dashboard/role/edit/{id}',[RoleController::class,'editRole'])->name('backend.role.edit');
+    Route::post('/dashboard/role/give-permission',[RoleController::class,'givePermission'])->name('backend.role.give-permission');
 
 });
 

@@ -26,11 +26,15 @@ class RoleController extends Controller
         ]);
     }
     public function editRole($id){
-        // return ;
-
         return view('backend.roles.edit',[
             'role' => Role::find($id),
             'permissions' => Permission::all(),
         ]);
+    }
+    public function givePermission(Request $request){
+        // return $request;
+        $role = Role::where('name',$request->role)->first();
+        $role->syncPermissions($request->permission);
+        return redirect()->route('backend.role.edit',$role->id);
     }
 }
