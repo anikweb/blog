@@ -30,9 +30,12 @@ Route::middleware(['verified','auth'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     // Role Management
     Route::get('/dashboard/assign-role',[RoleController::class,'assignRole'])->name('backend.create.role');
+    Route::post('/dashboard/assign-role/update',[RoleController::class,'assignRoleUpdate'])->name('backend.role.assign-role');
     Route::get('/dashboard/roles',[RoleController::class,'roles'])->name('backend.roles');
     Route::get('/dashboard/role/edit/{id}',[RoleController::class,'editRole'])->name('backend.role.edit');
     Route::post('/dashboard/role/give-permission',[RoleController::class,'givePermission'])->name('backend.role.give-permission');
+    Route::get('/dashboard/users',[RoleController::class,'indexUser'])->name('backend.user');
+
 
 });
 

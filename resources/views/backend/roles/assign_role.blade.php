@@ -24,7 +24,7 @@
                             <h3 class="card-title">Assign Role</h3>
                         </div>
                         <div class="card-body">
-                            <form action="#">
+                            <form action="{{ route('backend.role.assign-role') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6  mx-auto pb-4 text-md-left text-center ">
@@ -32,16 +32,15 @@
                                         <div class="input-group">
                                             <select name="user" id="user" class="form-control users-input" style="text-align: left">
                                                 @foreach ($users as $user)
-                                                    <option value="">{{ $user->name  }} ({{ $user->email  }})</option>
+                                                    <option value="{{ $user->id }}">{{ $user->name  }} ({{ $user->email  }})</option>
                                                 @endforeach
                                             </select>
                                             <div class="input-group-append">
                                                 {{-- <button class="btn  " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button> --}}
                                                 {{-- <div class="dropdown-menu"> --}}
-                                                    <select name="" id="" class=" form-control">
+                                                    <select name="role" id="" class="form-control">
                                                         @foreach ($roles as $role)
-                                                            <option value="">{{ $role->name }}</option>
-
+                                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 {{-- </div> --}}

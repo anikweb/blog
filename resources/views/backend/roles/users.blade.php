@@ -9,7 +9,7 @@
             <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Assign Role</li>
+                <li class="breadcrumb-item active">Users</li>
             </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header bg-success">
-                            <h3 class="card-title">Assign Role</h3>
+                            <h3 class="card-title">Users</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -30,30 +30,34 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Permissions</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Since</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($roles as $role)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $loop->index +1 }}</td>
-                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
                                                 <td>
-                                                    <ul>
-                                                        @foreach ($role->permissions as $permission)
-                                                        <li> {{ Str::title($permission->name) }}</li>
-
-                                                        @endforeach
-                                                    </ul>
+                                                    @forelse ($user->roles as $role)
+                                                        {{ $role->name }}
+                                                    @empty
+                                                    ...
+                                                    @endforelse
                                                 </td>
+                                                <td>{{ $user->created_at->format('d/M/Y') }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('backend.role.edit',$role->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-danger"><i class="fa fa-ban"></i></a>
                                                     <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -63,28 +67,4 @@
             </div>
         </div>
     </section>
-@endsection
-@section('footer_js')
-<script>
-    $(document).ready(function() {
-        $('.users-input').select2();
-    });
-</script>
-@endsection
-@section('internal_style')
-<style>
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background: #17a2b8 !important;
-        color: #fff !important;
-    }
-    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-        color: #fff !important;
-    }
-    .select2-container--default .select2-selection--single {
-        height: 38px !important;
-    }
-    .select2{
-        text-align: left;
-    }
-</style>
 @endsection

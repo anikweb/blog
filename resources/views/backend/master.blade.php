@@ -207,28 +207,45 @@
                             </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-users nav-icon"></i>
-                                <p>
-                                    Roles
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('backend.create.role') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Assign Role</p>
-                                    </a>
-                                    <a href="{{ route('backend.roles') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Roles</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
 
+                        @can('role management')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-users nav-icon"></i>
+                                    <p>
+                                        Roles
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('backend.create.role') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Assign Role</p>
+                                        </a>
+                                        <a href="{{ route('backend.roles') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Roles</p>
+                                        </a>
+                                        <a href="{{ route('backend.user') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Users</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <form id="sign-out-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
+                            <a href="javascript:void(0)" onclick="document.getElementById('sign-out-form').submit()" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Sign out
+                            </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -20,6 +20,14 @@ class RoleController extends Controller
             'roles' => Role::orderBy('name','asc')->get(),
         ]);
     }
+    public function assignRoleUpdate(Request $request){
+        // return $request;
+        $user = User::find($request->user);
+        // return $request->user;
+        // return $request->user;
+        $user->syncRoles($request->role);
+        return back();
+    }
     public function roles(){
         return view('backend.roles.index',[
             'roles' => Role::orderBy('name','asc')->get(),
@@ -36,5 +44,10 @@ class RoleController extends Controller
         $role = Role::where('name',$request->role)->first();
         $role->syncPermissions($request->permission);
         return redirect()->route('backend.role.edit',$role->id);
+    }
+    public function indexUser(){
+        return view('backend.roles.users',[
+            'users' => User::all(),
+        ]);
     }
 }
