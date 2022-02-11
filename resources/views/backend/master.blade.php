@@ -209,8 +209,8 @@
                         </li>
 
                         @can('role management')
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                            <li class="nav-item @if(Route::is('backend.create.role')||Route::is('backend.role.assign-role')||Route::is('backend.role.edit')||Route::is('backend.roles')||Route::is('backend.role.give-permission')||Route::is('backend.roles')||Route::is('backend.user')) menu-open @endif">
+                                <a href="#" class="nav-link @if(Route::is('backend.create.role')||Route::is('backend.role.assign-role')||Route::is('backend.role.edit')||Route::is('backend.roles')||Route::is('backend.role.give-permission')||Route::is('backend.roles')||Route::is('backend.user')) active @endif">
                                     <i class="fa fa-users nav-icon"></i>
                                     <p>
                                         Roles
@@ -219,15 +219,15 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{ route('backend.create.role') }}" class="nav-link">
+                                        <a href="{{ route('backend.create.role') }}" class="nav-link @if(Route::is('backend.create.role')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Assign Role</p>
                                         </a>
-                                        <a href="{{ route('backend.roles') }}" class="nav-link">
+                                        <a href="{{ route('backend.roles') }}" class="nav-link @if(Route::is('backend.roles')||Route::is('backend.role.edit')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Roles</p>
                                         </a>
-                                        <a href="{{ route('backend.user') }}" class="nav-link">
+                                        <a href="{{ route('backend.user') }}" class="nav-link @if(Route::is('backend.user')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Users</p>
                                         </a>

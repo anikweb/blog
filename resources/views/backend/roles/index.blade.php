@@ -48,9 +48,9 @@
                                                     </ul>
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                                    {{-- <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a> --}}
                                                     <a href="{{ route('backend.role.edit',$role->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                                                    <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                    {{-- <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -32,7 +32,9 @@
                                         <div class="input-group">
                                             <select name="user" id="user" class="form-control users-input" style="text-align: left">
                                                 @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name  }} ({{ $user->email  }})</option>
+                                                    @if (Auth::user()->id != $user->id)
+                                                        <option value="{{ $user->id }}">{{ $user->name  }} ({{ $user->email  }})</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                             <div class="input-group-append">

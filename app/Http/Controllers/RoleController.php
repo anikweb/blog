@@ -10,44 +10,60 @@ use App\Models\User;
 class RoleController extends Controller
 {
     public function assignRole(){
+        if (auth()->user()->can('role management')) {
+            return view('backend.roles.assign_role',[
+                'users' => User::orderBy('name','asc')->get(),
+                'roles' => Role::orderBy('name','asc')->get(),
+            ]);
+        }else{
+            abort(404);
+        }
 
-        // $role = Role::create(['name' => 'Admin']);
-        // $permission = Permission::create(['name' => 'role management']);
-        // return 'ok';
-
-        return view('backend.roles.assign_role',[
-            'users' => User::orderBy('name','asc')->get(),
-            'roles' => Role::orderBy('name','asc')->get(),
-        ]);
     }
     public function assignRoleUpdate(Request $request){
-        // return $request;
-        $user = User::find($request->user);
-        // return $request->user;
-        // return $request->user;
-        $user->syncRoles($request->role);
-        return back();
+        if (auth()->user()->can('role management')) {
+            $user = User::find($request->user);
+            $user->syncRoles($request->role);
+            return back();
+        }else{
+            return abort(404);
+        }
     }
     public function roles(){
-        return view('backend.roles.index',[
-            'roles' => Role::orderBy('name','asc')->get(),
-        ]);
+        if (auth()->user()->can('role management')) {
+            return view('backend.roles.index',[
+                'roles' => Role::orderBy('name','asc')->get(),
+            ]);
+        }else{
+            return abort(404);
+        }
     }
     public function editRole($id){
-        return view('backend.roles.edit',[
-            'role' => Role::find($id),
-            'permissions' => Permission::all(),
-        ]);
+        if (auth()->user()->can('role management')) {
+            return view('backend.roles.edit',[
+                'role' => Role::find($id),
+                'permissions' => Permission::all(),
+            ]);
+        }else{
+            return abort(404);
+        }
     }
     public function givePermission(Request $request){
-        // return $request;
-        $role = Role::where('name',$request->role)->first();
-        $role->syncPermissions($request->permission);
-        return redirect()->route('backend.role.edit',$role->id);
+        if (auth()->user()->can('role management')) {
+            $role = Role::where('name',$request->role)->first();
+            $role->syncPermissions($request->permission);
+            return redirect()->route('backend.role.edit',$role->id);
+        }else{
+            return abort(404);
+        }
     }
     public function indexUser(){
-        return view('backend.roles.users',[
-            'users' => User::all(),
-        ]);
+        if (auth()->user()->can('role management')) {
+            return view('backend.roles.users',[
+                'users' => User::all(),
+            ]);
+        }else{
+            return abort(404);
+        }
     }
 }
