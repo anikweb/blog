@@ -10,6 +10,11 @@ use App\Models\User;
 class RoleController extends Controller
 {
     public function assignRole(){
+        // Role::create(['name' => 'Admin']);
+        // Role::create(['name' => 'Editor']);
+        // Role::create(['name' => 'Subscriber']);
+        // Permission::create(['name' => 'role management']);
+        // return 'added';
         if (auth()->user()->can('role management')) {
             return view('backend.roles.assign_role',[
                 'users' => User::orderBy('name','asc')->get(),
